@@ -1,0 +1,5 @@
+"id","name","street","city","country_id","course_ids","course_average_classrooms","is_company","company_id/id","is_school"
+"school_jorge_1","Colegio Jorge 1","Calle Falsa 122","Rosario","Argentina","3 años,4 años,5 años,1,2,3,4,5,6,7,8,9,10,11,12",2,"True","grupo_logos","True"
+"school_jorge_2","Colegio Jorge 2","Calle Falsa 123","Santa Fe","Argentina","3 años,4 años,5 años,1,2,3,4,5,6,7,8,9,10,11,12",1,"True","grupo_logos","True"
+"school_otro_1","Colegio Otro 1","Calle Falsa 122","Rosario","Chile","3 años,4 años,5 años,1,2,3,4,5,6,7,8,9,10,11,12",2,"True","otro_corresponsal","True"
+"school_otro_2","Colegio Otro 2","Calle Falsa 123","Santa Fe","Chile","3 años,4 años,5 años,1,2,3,4,5,6,7,8,9,10,11,12",1,"True","otro_corresponsal","True"

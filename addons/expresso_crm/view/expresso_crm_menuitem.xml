@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+#    Expresso CRM
+#    Copyright (C) 2014 Grupo ADHOC
+#    No email
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+
+-->
+<openerp>
+    <data>
+
+        <menuitem
+            name="Expresso CRM"
+            id="menu_expresso_crm"
+            sequence="100"
+            groups="group_user"
+            />
+
+
+        <menuitem
+            name="Configuration"
+            id="menu_configuration"
+            sequence="90"
+            parent="menu_expresso_crm"
+            groups="group_manager"
+            />
+
+
+        <menuitem
+            name="Main"
+            id="menu_main"
+            sequence="10"
+            parent="menu_expresso_crm"
+            groups="group_user"
+            />
+
+        <record id="action_expresso_crm_campaign_campaigns" model="ir.actions.act_window">
+            <field name="name">Campaigns</field>
+            <field name="res_model">expresso_crm.campaign</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_expresso_crm_campaign_tree"/>
+            <field name="search_view_id" ref="view_expresso_crm_campaign_filter"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Campaigns"
+            id="menu_campaigns"
+            sequence="100"
+            action="action_expresso_crm_campaign_campaigns"
+            parent="menu_configuration"
+            groups="group_manager"
+            />
+
+        <record id="action_expresso_crm_campaign_detail_campaings_details" model="ir.actions.act_window">
+            <field name="name">Campaings Details</field>
+            <field name="res_model">expresso_crm.campaign_detail</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_expresso_crm_campaign_detail_tree"/>
+            <field name="search_view_id" ref="view_expresso_crm_campaign_detail_filter"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Campaings Details"
+            id="menu_campaings_details"
+            sequence="20"
+            action="action_expresso_crm_campaign_detail_campaings_details"
+            parent="menu_main"
+            groups="group_user"
+            />
+
+        <record id="action_expresso_crm_course_courses" model="ir.actions.act_window">
+            <field name="name">Courses</field>
+            <field name="res_model">expresso_crm.course</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_expresso_crm_course_tree"/>
+            <field name="search_view_id" ref="view_expresso_crm_course_filter"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Courses"
+            id="menu_courses"
+            sequence="100"
+            action="action_expresso_crm_course_courses"
+            parent="menu_configuration"
+            groups="group_manager"
+            />
+
+        <record id="action_expresso_crm_educational_plan_educational_plans" model="ir.actions.act_window">
+            <field name="name">Educational Plans</field>
+            <field name="res_model">expresso_crm.educational_plan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_expresso_crm_educational_plan_tree"/>
+            <field name="search_view_id" ref="view_expresso_crm_educational_plan_filter"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Educational Plans"
+            id="menu_educational_plans"
+            sequence="100"
+            action="action_expresso_crm_educational_plan_educational_plans"
+            parent="menu_configuration"
+            groups="group_manager"
+            />
+
+        <record id="action_expresso_crm_partner_schools" model="ir.actions.act_window">
+            <field name="name">Schools</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_expresso_crm_partner_tree"/>
+            <field name="search_view_id" ref="view_expresso_crm_partner_filter"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Schools"
+            id="menu_schools"
+            sequence="10"
+            action="action_expresso_crm_partner_schools"
+            parent="menu_main"
+            groups="group_user"
+            />
+
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->

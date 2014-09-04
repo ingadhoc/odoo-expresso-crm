@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_expresso_crm_report_expresso_crm_report_user","expresso_crm_report_user","model_expresso_crm_report","expresso_crm.group_user",1,0,0,0
+"access_expresso_crm_report_expresso_crm_report_manager","expresso_crm_report_manager","model_expresso_crm_report","expresso_crm.group_manager",1,0,0,0

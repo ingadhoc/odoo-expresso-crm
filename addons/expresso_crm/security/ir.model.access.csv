@@ -1,0 +1,11 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_expresso_crm_campaign_detail_user","expresso_crm.campaign_detail.user","model_expresso_crm_campaign_detail","group_user",1,1,1,1
+"access_expresso_crm_campaign_detail_manager","expresso_crm.campaign_detail.manager","model_expresso_crm_campaign_detail","group_manager",1,1,1,1
+"access_expresso_crm_educational_plan_user","expresso_crm.educational_plan.user","model_expresso_crm_educational_plan","group_user",1,1,1,1
+"access_expresso_crm_educational_plan_manager","expresso_crm.educational_plan.manager","model_expresso_crm_educational_plan","group_manager",1,1,1,1
+"access_expresso_crm_campaign_user","expresso_crm.campaign.user","model_expresso_crm_campaign","group_user",1,1,1,1
+"access_expresso_crm_campaign_manager","expresso_crm.campaign.manager","model_expresso_crm_campaign","group_manager",1,1,1,1
+"access_expresso_crm_course_user","expresso_crm.course.user","model_expresso_crm_course","group_user",1,1,1,1
+"access_expresso_crm_course_manager","expresso_crm.course.manager","model_expresso_crm_course","group_manager",1,1,1,1
+"access_res_partner_user","res.partner.user","model_res_partner","group_user",1,1,1,1
+"access_res_partner_manager","res.partner.manager","model_res_partner","group_manager",1,1,1,1

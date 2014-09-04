@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"expresso_crm.access_expresso_crm_educational_plan_user","expresso_crm.educational_plan.user","expresso_crm.model_expresso_crm_educational_plan","expresso_crm.group_user",1,0,0,0
+"expresso_crm.access_expresso_crm_campaign_user","expresso_crm.campaign.user","expresso_crm.model_expresso_crm_campaign","expresso_crm.group_user",1,0,0,0
+"expresso_crm.access_expresso_crm_course_user","expresso_crm.course.user","expresso_crm.model_expresso_crm_course","expresso_crm.group_user",1,0,0,0
+"expresso_crm.access_expresso_crm_course_manager","expresso_crm.course.manager","expresso_crm.model_expresso_crm_course","expresso_crm.group_manager",1,0,0,0

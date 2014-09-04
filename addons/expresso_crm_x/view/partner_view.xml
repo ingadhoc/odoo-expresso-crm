@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+#    crm_expresso
+#    Copyright (C) 2013 No author.
+#    No email
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+-->
+<!-- crm_expresso.partner -->
+<!-- res.partner -->
+<!-- res.partner -->
+<openerp>
+    <data>
+        <!-- AGREGANDO CONTEXTO A ITEM DE MENU PARA ISCOMPANY = TRUE -->
+        <record id="expresso_crm.action_expresso_crm_partner_schools" model="ir.actions.act_window">
+            <!-- <field name="name">Schools</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_expresso_crm_partner_tree"/> -->
+            <field name="search_view_id" ref="expresso_crm.view_expresso_crm_partner_filter"/> 
+            <field name="domain">[('is_school','=','True')]</field>
+            <field name="context">{'default_is_company':True,'default_is_school':True}</field>
+        </record>
+
+        <!-- SEARCH -->
+        <record id="expresso_crm.view_expresso_crm_partner_filter" model="ir.ui.view">
+            <field name="name">expresso_crm.partner.select</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref=""/>
+            <field name="arch" type="xml">
+                <search>
+                   <field name="name" filter_domain="['|','|',('name','ilike',self),('parent_id','ilike',self),('ref','=',self)]"/>
+                   <!-- <filter help="My Partners" icon="terp-personal+" domain="[('user_id','=',uid)]"/> -->
+<!--                    <separator/>
+                   <filter string="Persons" name="type_person" domain="[('is_company','=',0)]"/>
+                   <filter string="Companies" name="type_company" domain="[('is_company','=',1)]"/>
+                   <separator/>
+                   <filter string="Customers" name="customer" domain="[('customer','=',1)]" help="Customer Partners"/>
+                   <filter string="Suppliers" name="supplier" domain="[('supplier','=',1)]" help="Supplier Partners"/>
+                   <separator/> -->
+                   <field name="category_id" string="Tag" filter_domain="[('category_id','ilike', self)]"/>
+                   <field name="company_id"/>
+                   <field name="state_id"/>
+                   <field name="country_id"/>
+                   <!-- <field name="user_id"/> -->
+                   <!-- <field name="parent_id" domain="[('is_company','=',1)]" filter_domain="[('parent_id','child_of',[self])]"/> -->
+                   <group expand="0" string="Group By...">
+                       <!-- <filter string="Salesperson" icon="terp-personal" domain="[]" context="{'group_by' : 'user_id'}"/> -->
+                       <filter string="Company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                       <filter string="Country" context="{'group_by': 'country_id'}"/>
+                       <filter string="State" context="{'group_by': 'state_id'}"/>
+                       <separator/>
+                       <filter string="Number of Courses" context="{'group_by': 'courses'}"/>
+                       <filter string="Classrooms Total" context="{'group_by': 'classrooms_total'}"/>
+                   </group>                    
+                </search>
+            </field>
+        </record>
+ 
+        <!-- INHERITED FORM -->
+        <record id="expresso_crm.view_expresso_crm_partner_form" model="ir.ui.view">
+            <field name="name">expresso_crm.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+            <!-- Haciendo city y country obligatorios -->
+              <field name="city" position="attributes">
+                <attribute name="required">True</attribute>
+              </field>
+              <field name="country_id" position="attributes">
+                <attribute name="required">True</attribute>
+              </field>
+            <!-- Agregando pag de schools -->
+                <page string="Contacts" position="before">
+                    <page string="School Details">
+                        <group colspan="4" col="4">
+                            <field name="calendar"/>
+                            <newline/>
+                            <field name="course_ids"  widget="many2many_tags" placeholder="Available Courses ..." colspan="4"/>
+                            <field name="courses" />
+                            <field name="course_average_classrooms" />
+                            <field name="classrooms_total" />
+                        </group>
+                        <group colspan="4" col="1">
+                            <field name="campaign_detail_ids" >
+                                <tree editable="top">
+                                    <field name="campaign_id" />
+                                    <field name="educational_plan_id"/>
+                                    <field name="course_ids"  widget="many2many_tags" placeholder="Courses..." />
+                                </tree>
+                            </field> 
+                        </group>
+                    </page>
+                </page>
+            <!-- Agregamos is school despues de customer -->     
+                <field name="customer" position="after">
+                    <field name="is_school"/>
+                </field>
+            <!-- Bloques para simplificar vista -->
+                <!-- Sacamos company -->
+                <div class="oe_edit_only" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </div>
+                <!-- Sacando pagina de contactos -->
+                <page string="Contacts" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </page>
+                <page string="Sales &amp; Purchases" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </page>        
+                <field name="function" position="attributes">
+                    <attribute name="groups">"base.group_no_one"</attribute>
+                </field>                          
+                <field name="title" position="attributes">
+                    <attribute name="groups">"base.group_no_one"</attribute>
+                </field>
+            </field>
+        </record>
+
+        <!-- INHERITED TREE -->
+        <record id="expresso_crm.view_expresso_crm_partner_tree" model="ir.ui.view">
+            <field name="name">expresso_crm.partner.tree</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <tree position="inside">
+                    <field name="courses" />
+                    <field name="course_average_classrooms" />
+                    <field name="classrooms_total" />                    
+                    <field name="state_id" invisible="1"/>
+                    <field name="company_id" groups="base.group_multi_company"/>                       
+                </tree>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->

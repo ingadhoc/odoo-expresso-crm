@@ -1,0 +1,4 @@
+"id","name","company_ids/id","login","company_id/id","password","groups_id/id"
+"jorge","Jorge Chrestia","grupo_logos","jorge","grupo_logos","jorge","base.group_user,base.group_partner_manager,expresso_crm.group_user"
+"otro","Otro Corresponsal","otro_corresponsal","otro","otro_corresponsal","otro","base.group_user,base.group_partner_manager,expresso_crm.group_user"
+"jordi","Jorge Soley","base.main_company","jordi","base.main_company","jordi","base.group_user,base.group_partner_manager,expresso_crm.group_manager,base.group_multi_company"

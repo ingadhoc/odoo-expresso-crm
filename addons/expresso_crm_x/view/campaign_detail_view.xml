@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+#    crm_expresso
+#    Copyright (C) 2013 No author.
+#    No email
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+-->
+<!-- crm_expresso.campaign_detail -->
+<!-- crm_expresso.campaign_detail -->
+<!-- crm_expresso.campaign_detail -->
+<openerp>
+    <data>
+
+        <!-- SEARCH VIEW -->
+         <record id="view_expresso_crm_campaign_detail_filter" model="ir.ui.view">
+            <field name="name">expresso_crm.campaign_detail.select</field>
+            <field name="model">expresso_crm.campaign_detail</field>
+            <field name="inherit_id" ref="expresso_crm.view_expresso_crm_campaign_detail_filter"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="course_ids" position="replace">
+                        <field name="course_ids" filter_domain="[('course_ids','ilike', self)]"/>
+                    </field>
+                    <group string="By object" position="after">
+                        <group expand="0" string="Group by...">
+                            <filter string="Company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                            <filter string="School" context="{'group_by':'partner_id'}"/>
+                            <filter string="Educational Plan" context="{'group_by':'educational_plan_id'}"/>
+                            <filter string="Campaign" context="{'group_by':'campaign_id'}"/>
+                        </group>
+                    </group>
+                </data>
+            </field>
+        </record> 
+
+        <!-- FORMVIEW -->
+<!--         <record id="view_crm_expresso_campaign_detail_form" model="ir.ui.view">
+            <field name="name">crm_expresso.campaign_detail.form</field>
+            <field name="model">crm_expresso.campaign_detail</field>
+            <field name="arch" type="xml">
+                <form string="campaign_detail" version="7.0">
+                    <header>
+                    </header>
+                    <sheet string="campaign_detail">
+                     <group>
+                    <field name="course_id"
+                            />
+                    <field name="res_partner_id"
+                            />
+                    <field name="educational_plan_ids"
+                            />
+                    <field name="campaign_id"
+                            />
+                     </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+ -->
+        <!-- TREEVIEW -->
+
+        <record id="expresso_crm.view_expresso_crm_campaign_detail_tree" model="ir.ui.view">
+            <field name="name">expresso_crm.campaign_detail.tree</field>
+            <field name="model">expresso_crm.campaign_detail</field>
+            <field name="arch" type="xml">
+                <tree string="campaign_detail" editable="top" >
+                    <field name="campaign_id" />
+                    <field name="partner_id" />
+                    <field name="educational_plan_id"/>
+                    <field name="course_ids"  widget="many2many_tags" placeholder="Courses..."/>
+                    <field name="company_id"  groups="base.group_multi_company" widget="selection"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- GRAPH BIEW -->
+        <record id="view_expresso_crm_campaign_detail_graph" model="ir.ui.view">
+            <field name="name">expresso_crm.campaign_detail.graph</field>
+            <field name="model">expresso_crm.campaign_detail</field>
+            <field name="arch" type="xml">
+                <graph string="Graph" type="bar">
+                    <field name="campaign_id" />
+                    <field name="partner_id" operator="+"/>
+                    <field name="partner_id" group="True"/>
+<!--                    <field name="price_type_id" group="True"/>-->
+                </graph>
+            </field>
+        </record>
+
+
+        <record id="expresso_crm.action_expresso_crm_campaign_detail_campaings_details" model="ir.actions.act_window">
+            <field name="name">Campaings Details</field>
+            <field name="res_model">expresso_crm.campaign_detail</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+<!--            <field name="view_id" ref="view_expresso_crm_campaign_detail_tree"/>
+            <field name="search_view_id" ref="view_expresso_crm_campaign_detail_filter"/>
+            <field name="help" type="html">aaaayuda</field>
+            <field name="domain">[]</field>-->
+        </record>
+
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->

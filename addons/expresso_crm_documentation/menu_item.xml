@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.actions.act_url" id="action_expresso_crm_manager_documentation">
+            <field name="name">Help Manager</field>
+            <field name="url">/expresso_crm_documentation/static/src/doc_manager/index.html</field>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem id="menu_expresso_crm_manager_documentation" sequence="510"
+                  name="Help Manager"
+                  action="action_expresso_crm_manager_documentation"           
+                  groups="expresso_crm.group_manager"/>
+
+        <record model="ir.actions.act_url" id="action_expresso_crm_corresponsal_documentation">
+            <field name="name">Help Corresponsal</field>
+            <field name="url">/expresso_crm_documentation/static/src/doc_corresponsal/index.html</field>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem id="menu_expresso_crm_corresponsal_documentation" sequence="520"
+                  name="Help Corresponsal"
+                  action="action_expresso_crm_corresponsal_documentation"
+                  groups="expresso_crm.group_user"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<openerp>
+     <data>
+
+<!-- Real Value by Campaign per Plan Dashboard-->
+        <!-- Valor real por campaña,a grupado por plan - Bar -->
+        <record id="view_expresso_crm_real_by_campaign_graph" model="ir.ui.view">
+            <field name="name">Courses sold x Campaign - Bar</field>
+            <field name="model">expresso.crm.report</field>
+            <field name="arch" type="xml">
+                <graph orientation="vertical" string="Campaign Details" type="bar">
+                    <field name="campaign_id" />
+                    <field name="value" operator="+"/>
+                    <field name="educational_plan_id" group="True"/>
+                </graph>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_real_by_campaign_graph">
+            <field name="name">Courses sold x Campaign - Bar</field>
+            <field name="res_model">expresso.crm.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <field name="domain">[('type','=','Real')]</field>
+            <field name="view_id" ref="view_expresso_crm_real_by_campaign_graph"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_real_by_campaign_tree">
+            <field name="name">Courses sold x Campaign - Tree</field>
+            <field name="res_model">expresso.crm.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_report_expresso_crm_tree"/>
+            <field name="domain">[('type','=','Real')]</field>
+            <field name="context">{'group_by':['campaign_id','educational_plan_id','partner_id','course_id']}</field>
+        </record>
+
+        <record model="ir.ui.view" id="board_expresso_crm_statistical_form">
+            <field name="name">Expresso CRM - Statistical Dashboard Form</field>
+            <field name="model">board.board</field>
+            <field name="arch" type="xml">
+                <form string="Statistics Dashboard" version="7.0">
+                    <board style="1">
+                        <column>
+                            <action string="Value by Campaign per Plan" name="%(act_real_by_campaign_graph)d"/>
+                            <action string="Value by Campaign per Plan" name="%(act_real_by_campaign_tree)d"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="open_board_statistical_dash">
+            <field name="name">Courses sold x Campaign</field>
+            <field name="res_model">board.board</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="board_expresso_crm_statistical_form"/>
+        </record>
+
+        <menuitem
+            id="menu_board_statistics_dash"
+            parent="base.menu_reporting_dashboard"
+            action="open_board_statistical_dash"
+            sequence="10"
+            groups="expresso_crm.group_user"/>
+
+<!-- Real Value by Plan per Campaign Dashboard-->
+        <!-- Valor real por campaña,a grupado por plan - Bar -->
+        <record id="view_expresso_crm_real_by_plan_graph" model="ir.ui.view">
+            <field name="name">Plans Sales Distribution - Bar</field>
+            <field name="model">expresso.crm.report</field>
+            <field name="arch" type="xml">
+                <graph orientation="vertical" string="Campaign Details" type="pie">
+                    <field name="educational_plan_id" />
+                    <field name="value" operator="+"/>
+                </graph>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_real_by_plan_graph">
+            <field name="name">Plans Sales Distribution - Bar</field>
+            <field name="res_model">expresso.crm.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <field name="domain">[('type','=','Real')]</field>            
+            <field name="view_id" ref="view_expresso_crm_real_by_plan_graph"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_real_by_plan_tree">
+            <field name="name">Plans Sales Distribution - Tree</field>
+            <field name="res_model">expresso.crm.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('type','=','Real')]</field>            
+            <field name="view_id" ref="view_report_expresso_crm_tree"/>
+            <field name="context">{'group_by':['educational_plan_id','campaign_id']}</field>
+        </record>
+
+        <record model="ir.ui.view" id="board_expresso_crm_plan_per_course_form">
+            <field name="name">Expresso CRM - Statistical Dashboard Form</field>
+            <field name="model">board.board</field>
+            <field name="arch" type="xml">
+                <form string="Statistics Dashboard" version="7.0">
+                    <board style="1">
+                        <column>
+                            <action string="Value by Plan per Course" name="%(act_real_by_plan_graph)d"/>
+                            <action string="Value by Plan per Course" name="%(act_real_by_plan_tree)d"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="open_board_plan_per_course_dash">
+            <field name="name">Plans Sales Distribution</field>
+            <field name="res_model">board.board</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="board_expresso_crm_plan_per_course_form"/>
+        </record>
+
+        <menuitem
+            id="menu_board_plan_per_course_dash"
+            parent="base.menu_reporting_dashboard"
+            action="open_board_plan_per_course_dash"
+            sequence="20"
+            groups="expresso_crm.group_user"/>
+
+
+<!-- REPORTE EN GOOGLE SPREADSHEET -->
+
+        <record model="ir.actions.act_url" id="action_google_campaign_report">
+            <field name="name">Campaign Report</field>
+            <field name="url">https://docs.google.com/spreadsheet/ccc?key=0AhiADVhh-SxidEZTODZ4ckFoN19VSFp1MVZvMTk0QWc#gid=1</field>
+            <!-- <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="board_expresso_crm_plan_per_course_form"/> -->
+        </record>
+
+        <menuitem
+            id="menu_google_campaign_report"
+            parent="menu_report_expresso_crm"
+            action="action_google_campaign_report"
+            name="Campaign Report"
+            sequence="20"
+            groups="expresso_crm.group_manager"/>
+
+    </data>
+</openerp>

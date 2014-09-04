@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_report_campaign_detail_tree" model="ir.ui.view">
+            <field name="name">expresso_crm.campaign_detail.report.tree</field>
+            <field name="model">campaign_detail.report</field>
+            <field name="arch" type="xml">
+            <tree string="Campaign Details" create="false">
+                <field name="campaign_id" />
+                <field name="partner_id" />
+                <field name="course_id" />
+                <field name="educational_plan_id" />
+                <field name="potential_value" />
+                <field name="real_value" />
+             </tree>
+            </field>
+        </record>
+
+        <record id="view_report_campaign_detail_filter" model="ir.ui.view">
+            <field name="name">expresso_crm.campaign_detail.report.select</field>
+            <field name="model">campaign_detail.report</field>
+            <field name="arch" type="xml">
+                <search string="Campaign Details">
+                    <filter name="campaign" string="Campaign" domain="[('campaign_id.name','=', '2012')]" help="Show only campaign"/>
+                    <separator/>
+                   <filter string="My Campaign(s)" help="Campaigns that are assigned to me" domain="[('company_id','=',uid.company_id.id)]"/>
+                    <separator/>
+                    <group expand="0" string="Extended Filters...">
+                        <field name="partner_id" filter_domain="[('partner_id','child_of',self)]"/>
+                        <field name="course_id" />
+                        <field name="educational_plan_id" />
+                    </group>
+                    <group expand="1" string="Group By...">
+                        <filter string="School" domain="[]" context="{'group_by':'partner_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+       <record id="action_report_campaign_detail" model="ir.actions.act_window">
+           <field name="name">Campaign Details</field>
+           <field name="res_model">campaign_detail.report</field>
+           <field name="view_type">tree</field>
+           <field name="context">{}</field>
+           <field name="view_mode">tree</field>
+           <field name="domain">[]</field>
+       </record>
+
+       <menuitem name="Expresso CRM" id="menu_report_expresso_crm"
+            groups="expresso_crm.group_user"
+            parent="base.menu_reporting" sequence="1"/>
+      
+      <menuitem name="Campaign Details" id="menu_report_campaign_details_tree"
+            parent="menu_report_expresso_crm" action="action_report_campaign_detail" sequence="1"/>
+
+    </data>
+</openerp>
